@@ -1,20 +1,57 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// Routing
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+// import { StatusBar } from 'expo-status-bar';
+
+// React native
+import { Button, StyleSheet, Text, View } from 'react-native';
+
+// Function Calculator
+import FunctionCalculator from './src/ClassCalculator';
+import ClassCalculator from './src/ClassCalculator';
+
+// CREATE
+// Create Native Stack
+const Stack = createNativeStackNavigator();
+
+//FUNCTION
+// 1.YOL
+// const App = () => { }
+// 2.YOL
+ function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home"      component={HomeScreen}    options={{ title: "Anasayfa" }} />
+        <Stack.Screen name="ClassCalculator" component={ClassCalculator} options={{ title: "Class Calculator Alanı" }} />
+        <Stack.Screen name="FunctionCalculator" component={FunctionCalculator} options={{ title: "Function Calculator Alanı" }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+///////////////////////////////////////
+// BUTTON HomeScreen
+const HomeScreen = ({ navigation,route }) => {
+  return (
+    <View>
+
+      {/* Class Calculator */}
+      <Button
+        title='Calculator Class'
+        onPress={() => navigation.navigate('ClassCalculator', { name: 'Class Component Calculator' })} />
+
+
+      {/* Function Calculator */}
+      <Button
+        title='Calculator Function'
+        onPress={() => navigation.navigate('FunctionCalculator', { name: 'Class Component Calculator' })} />
+
+    </View> // common View
+  ); //end return 
+} //end HomeScreen
+
+
+// EXPORT
+export default App;
