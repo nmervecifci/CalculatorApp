@@ -39,6 +39,7 @@ const HomeScreen = ({ navigation,route }) => {
 
       {/* Class Calculator */}
       <Button
+      color="orange"
         title='Calculator Class'
         onPress={() => navigation.navigate('ClassCalculator', { name: 'Class Component Calculator' })} />
 
